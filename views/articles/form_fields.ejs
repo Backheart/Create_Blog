@@ -1,0 +1,23 @@
+
+           <div class="mb-3">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" class="form-control" id="title" name="title" required value="<%= article.title %>">
+            </div>
+            
+            <div class="mb-3">
+                <label for="author" class="form-label">Author</label>
+                <input type="text" class="form-control" id="author" name="author" required value="<%= article.author %>">
+            </div>
+
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <textarea class="form-control" id="description" name="description" rows="3" required><%= article.description %></textarea>
+            </div>
+            
+            <div class="mb-3">
+                <label for="markdown" class="form-label">Markdown</label>
+                <textarea class="form-control" id="markdown" name="markdown" rows="3" required><%= article.markdown %></textarea>
+            </div>
+            <a href="/" class="btn btn-secondary">Cancel</a>
+            
+            <button type="submit" class="btn btn-primary">Create Article</button>

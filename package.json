@@ -1,0 +1,22 @@
+{
+  "name": "make-blog",
+  "version": "1.0.0",
+  "description": "learn to make a blog",
+  "license": "ISC",
+  "author": "suuna",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "dompurify": "^3.3.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "jsdom": "^27.0.1",
+    "marked": "^16.4.1",
+    "method-override": "^3.0.0",
+    "mongoose": "^8.19.1",
+    "slugify": "^1.6.6"
+  }
+}
