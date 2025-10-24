@@ -1,8 +1,11 @@
+import 'dotenv/config';
 import express from "express";
 const app = express();
-const port = 4000;
+const PORT = process.env.PORT || 4000;
 import mongoose from "mongoose";
-import { marked } from "marked";
+
+
+
 import methodOverride from "method-override";
 
 
@@ -11,9 +14,24 @@ import Article from "./Markdown-Blog/article-mongoose.js";
 
 app.set("view engine", "ejs");
 
-mongoose.connect("mongodb://localhost/my_Blog")
-  .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+// Prefer environment variable, fall back to local MongoDB for development
+const CONNECTION_URL = process.env.DATABASE_URL;
+
+// If you require an env var in production, use a check like this:
+if (!CONNECTION_URL) {
+    console.error("FATAL ERROR: DATABASE_URL environment variable is missing!");
+    // It's often best to halt the app if a critical resource like the DB is missing
+    process.exit(1); 
+}
+
+mongoose.connect(CONNECTION_URL)
+  .then(() => console.log('MongoDB Connected!'))
+  .catch(err => console.error('Connection Error:', err));
+
+// mongoose.connect("mongodb://localhost/my_Blog")
+//   .then(() => console.log('MongoDB connected'))
+//   .catch(err => console.log(err));
+
 
 app.use(methodOverride("_method"));
 app.use(express.static("public"));
@@ -43,6 +61,6 @@ app.get("/", async(req, res) => {
 
 app.use("/articles", articleRouter); 
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(PORT, () => { // Note the uppercase P
+  console.log(`Server running on port ${PORT}`);
 });
